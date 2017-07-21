@@ -1,0 +1,21 @@
+<h1>Featured Photos</h1>
+<div fxLayoutAlign="space-around center">
+  <div>
+    <button type="button" (click)="featuredInput1.click()">Pretty MD button</button>
+    <input style="display:none" #featuredInput1 type="file" (change)="featuredPhotoSelected($event, 'url1')"><br>
+    <img *ngIf="(featuredPhotoStream | async)?.url1 as url" [src]="url" alt="Feautred Photo 1"/>
+
+  </div>
+
+  <div>
+    <input type="file" (change)="featuredPhotoSelected($event, 'url2')" /><br>
+    <img *ngIf="(featuredPhotoStream | async)?.url2 as url" [src]="url" alt="Feautred Photo 2"/>
+
+  </div>
+</div>
+
+<hr>
+<h1>Photo List</h1>
+  <input type="file" (change)="photoSelectedForList($event)"><br>
+  <img *ngFor="let photo of photoListStream | async" [src]="photo.url" alt="photo in the list">
+<hr>
